@@ -1,3 +1,54 @@
+html,
 body {
-    background-color: red;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  font-size: 100%;
+  background-color: aliceblue;
+}
+
+* {
+    font-family: 'Lato', Helvetica, sans-serif;
+    color: #333447;
+    line-height: 1.5;
+    box-sizing: border-box;
+  }
+
+/*div {
+    margin: 0.5rem;
+}
+
+section {
+  margin: 0.5rem;
+}*/
+
+.right {
+    float: right;
+    clear: both;
+}
+
+.container {
+    width: 50%;
+    height: 50%;
+    margin: 2rem auto 2rem auto;
+    padding: 2rem;
+}
+
+.num-plate {
+  border: black solid 0.2rem;
+  background-color: silver;
+  border-radius: 2rem;
+  width: 10rem;
+  text-align: center;
+}
+
+.inputs {
+  background-color: lightskyblue;
+}
+
+.outputs {
+  background-color: lightseagreen;
 }
