@@ -38,7 +38,7 @@ section {
 }
 
 .num-plate {
-  border: black solid 0.2rem;
+  border: black solid 0.15rem;
   background-color: silver;
   border-radius: 2rem;
   width: 10rem;
