@@ -1,21 +1,24 @@
 const addBtn = document.querySelector('.addBtn');
 let aRegNum = AddingRegNumbers();
 
-let getStorageList;
+let getStorageList = [];
 //A storage list(full or empty) is retrieved or a new one is created
 if (JSON.parse(localStorage.getItem('keyList') === null)) {
     localStorage.setItem('keyList', JSON.stringify([]));
-    console.log(localStorage);
+    //console.log(localStorage);
 } else {
     getStorageList = JSON.parse(localStorage.getItem('keyList'));
-    console.log(getStorageList);
+    //console.log(getStorageList);
 }
 
-getStorageList.push('apple');
-localStorage.keyList = getStorageList;
-console.log(localStorage);
-
 /*
+getStorageList.push('banana');
+console.log(getStorageList);
+localStorage.keyList = JSON.stringify(getStorageList);
+console.log(localStorage);
+console.log('BEFORE!!!!!');
+*/
+
 function addRegNum() {
     //HTML ELEMENTS
     let regNum = document.querySelector('.regNum');
@@ -24,26 +27,22 @@ function addRegNum() {
     //Get Number plate
     aRegNum.setRegNum(numberplate);
 
-    //Set the registration list into factory function
-    aRegNum.setRegList(registrationList);
+    //Set the registration list from the localStorage into factory function
+    aRegNum.setRegList(getStorageList);
 
     //Add entered registration number to the list
     aRegNum.addToList();
-
-    //get registration list
-    console.log(aRegNum.getUpdatedRegList());
-
-    /*
+    
     //Add number plate to list in local storage
-    localStorage.keyForRegNumbers = JSON.stringify(aRegNum.getUpdatedRegList);
+    localStorage.keyList = JSON.stringify(aRegNum.getUpdatedRegList());
 
+    
     //print new list
-    let printList = JSON.parse(localStorage.getItem('keyForRegNumbers'));
-    console.log(printList);
-    */
+    /*let printList = JSON.parse(localStorage.getItem('keyList'));
+    console.log(printList);*/
     
     //DYNAMICALLY ADDING THE NUMBERPLATES
-    /*document.body.onload = createElement();
+    document.body.onload = createElement();
     function createElement() {
         const newDiv = document.createElement('div');
         const existingDiv = document.querySelector('.randomDiv');
@@ -61,4 +60,4 @@ function addRegNum() {
     regNum2.value = '';
 }
 
-addBtn.addEventListener('click', addRegNum);*/
+addBtn.addEventListener('click', addRegNum);
