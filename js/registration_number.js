@@ -1,20 +1,29 @@
 function AddingRegNumbers() {
+    let theRegistrationList = [];
     let theRegNum = '';
-    let regNumList = [];
- 
+    
     function setRegNum(num) {
         theRegNum = num;
     }
 
-    function addToList () {
+    function setRegList (registrationList) {
+        theRegistrationList = registrationList;
+    }
+
+    function addToList() {
         if (theRegNum.length > 0) {
-            regNumList.push(theRegNum);
+            theRegistrationList.push(theRegNum);
         }
-        return regNumList;
+    }
+
+    function getUpdatedRegList() {
+        return theRegistrationList;
     }
 
     return {
         setRegNum,
-        addToList
+        setRegList,
+        addToList,
+        getUpdatedRegList
     }
 }
