@@ -8,23 +8,34 @@
 </head>
 <body>
     <section class="container inputs">
-        <div class="right">
+        <div class="">
             <label for="" class="">Registration Number:</label>
         </div>
-        <div class="right"> 
+        <div class=""> 
             <input type="text" value="" class="regNum">
         </div>
-        <div class="right">
+        <div class="margin-down">
             <button class="addBtn">ADD</button>
         </div>
+
+        <!-- DROP DOWN MENU FOR TOWNS-->
+        <label for="">Town: </label>
+        <div class="dropDown">
+            <select name="towns" id="accessingDropDown" class="dropDownContent">
+                <option value="selecttown">Select Town</option>
+                <option value="CY">Belville</option>
+                <option value="CA">Cape Town</option>
+                <option value="CJ">Paarl</option>
+                <option value="CL">Stellenbosch</option>
+              </select>
+        </div>
+        <button onclick="clickDropDown()" class="dropDownBtn">SHOW</button>
     </section>
     
     <!-- GOING TO CREATE A NUMBER PLATE DYNAMICALLY -->
-    <section class="container outputs">
+    <section class="container">
         <div class="randomDiv"></div>
     </section>
-
-    
 
     <!-- *** SCRIPTS ****-->
     <script src="../registration_numbers/js/registration_number.js" charset="utf-8"></script>
