@@ -1,3 +1,32 @@
+/* === PAGE REFRESHES === */
+//DYNAMICALLY ADDING THE NUMBERPLATES
+let storageListAgain = JSON.parse(localStorage.getItem('keyList'));
+let chosenTown2 ='';
+
+if (localStorage.getItem('keyTown') != null) {
+    chosenTown2 = localStorage.getItem('keyTown');
+
+    for (let i=0; i<storageListAgain.length; i++) {
+        let listItem2 = storageListAgain[i];
+        let firstLetters2 = listItem2.substr(0,2);
+    
+        if (firstLetters2 === chosenTown2) {
+            document.body.onload = createElement();
+            function createElement() {
+                const newDiv = document.createElement('div');
+                const existingDiv = document.querySelector('.randomDiv');
+    
+                //Storing the parent node in a variable
+                let parentDiv = existingDiv.parentNode;
+                const enterRegNum = document.createTextNode(listItem2);
+                newDiv.appendChild(enterRegNum);
+                parentDiv.insertBefore(newDiv, existingDiv);
+                newDiv.classList.add('num-plate');
+            }
+        }
+    }
+}
+
 /* === ADD BUTTON === */
 const addBtn = document.querySelector('.addBtn');
 let aRegNum = AddingRegNumbers();
@@ -38,10 +67,19 @@ addBtn.addEventListener('click', addRegNum);
 
 /* === DROP DOWN BUTTON === */
 function clickDropDown() {
+    //CLEAR NUMBER PLATES
+    let node = document.querySelectorAll('.num-plate');
+    for (let j=0; j<node.length; j++) {
+        if (node[j].parentNode) {
+            node[j].parentNode.removeChild(node[j]);
+        }; 
+    }
+
     //get list from localStorage
     let updatedListStorage = JSON.parse(localStorage.getItem('keyList'));
     
     let chosenTown = document.getElementById('accessingDropDown').value;
+    localStorage.setItem('keyTown', chosenTown);
     
     //DYNAMICALLY ADDING THE NUMBERPLATES
     for (let i=0; i<updatedListStorage.length; i++) {
@@ -63,15 +101,4 @@ function clickDropDown() {
             }
         }
     }
-
-    //CLEAR NUMBER PLATES
-    setTimeout(
-        function(){ 
-            let node = document.querySelectorAll('.num-plate');
-            for (let j=0; j<node.length; j++) {
-                if (node[j].parentNode) {
-                    node[j].parentNode.removeChild(node[j]);
-                }; 
-            } 
-    }, 5000);
 }
