@@ -1,24 +1,26 @@
-/* === PAGE REFRESHES === */
-//DYNAMICALLY ADDING THE NUMBERPLATES
-let storageListAgain = JSON.parse(localStorage.getItem('keyList'));
-let chosenTown2 ='';
-
-if (localStorage.getItem('keyTown') != null) {
-    chosenTown2 = localStorage.getItem('keyTown');
-
-    for (let i=0; i<storageListAgain.length; i++) {
-        let listItem2 = storageListAgain[i];
-        let firstLetters2 = listItem2.substr(0,2);
+/* === PAGE REFRESHES: DYNAMICALLY ADDING THE NUMBERPLATES IN LOCAL STORAGE
+ === */
+let getStorageList = [];
+//A storage list(full or empty) is retrieved or a new one is created
+if (JSON.parse(localStorage.getItem('keyList') === null)) {
+    localStorage.setItem('keyList', JSON.stringify([]));
+    //console.log(localStorage);
+} else {
+    getStorageList = JSON.parse(localStorage.getItem('keyList'));
+    //console.log(getStorageList);   
     
-        if (firstLetters2 === chosenTown2) {
+    if (getStorageList.length > 0) {
+        for (let i=0; i<getStorageList.length; i++) {
+            let listItem1 = getStorageList[i];
             document.body.onload = createElement();
+
             function createElement() {
                 const newDiv = document.createElement('div');
                 const existingDiv = document.querySelector('.randomDiv');
-    
+
                 //Storing the parent node in a variable
                 let parentDiv = existingDiv.parentNode;
-                const enterRegNum = document.createTextNode(listItem2);
+                const enterRegNum = document.createTextNode(listItem1);
                 newDiv.appendChild(enterRegNum);
                 parentDiv.insertBefore(newDiv, existingDiv);
                 newDiv.classList.add('num-plate');
@@ -27,27 +29,37 @@ if (localStorage.getItem('keyTown') != null) {
     }
 }
 
+
 /* === ADD BUTTON === */
 const addBtn = document.querySelector('.addBtn');
 let aRegNum = AddingRegNumbers();
-
-let getStorageList = [];
-//A storage list(full or empty) is retrieved or a new one is created
-if (JSON.parse(localStorage.getItem('keyList') === null)) {
-    localStorage.setItem('keyList', JSON.stringify([]));
-    //console.log(localStorage);
-} else {
-    getStorageList = JSON.parse(localStorage.getItem('keyList'));
-    //console.log(getStorageList);
-}
 
 function addRegNum() {
     //HTML ELEMENTS
     let regNum = document.querySelector('.regNum');
     let numberplate = regNum.value;
+    let errorMessageNumPlate = document.querySelector('.error-numplate');
 
     //Get Number plate
     aRegNum.setRegNum(numberplate);
+
+    //Print number plate
+    if (numberplate <= 0) {
+        errorMessageNumPlate.innerHTML = aRegNum.getNumberPlateError();
+    } else {
+        document.body.onload = createElement();
+            function createElement() {
+                const newDiv = document.createElement('div');
+                const existingDiv = document.querySelector('.randomDiv');
+
+                //Storing the parent node in a variable
+                let parentDiv = existingDiv.parentNode;
+                const enterRegNum = document.createTextNode(aRegNum.getRegNum());
+                newDiv.appendChild(enterRegNum);
+                parentDiv.insertBefore(newDiv, existingDiv);
+                newDiv.classList.add('num-plate');
+            }
+    }
 
     //Set the registration list from the localStorage into factory function
     aRegNum.setRegList(getStorageList);
@@ -56,12 +68,16 @@ function addRegNum() {
     aRegNum.addToList();
     
     //Add number plate to list in local storage
-    let theUpdateStorageList =aRegNum.getUpdatedRegList();
+    let theUpdateStorageList = aRegNum.getUpdatedRegList();
     localStorage.keyList = JSON.stringify(theUpdateStorageList);
 
     //CLEAR INPUT TEXT
     let regNum2 = document.querySelector('.regNum');
     regNum2.value = '';
+
+    //clear error message
+    let errorMessageNumPlate2 = document.querySelector('.error-numplate');
+    setTimeout(function(){ errorMessageNumPlate2.innerHTML = '' }, 3000);
 }
 addBtn.addEventListener('click', addRegNum);
 
