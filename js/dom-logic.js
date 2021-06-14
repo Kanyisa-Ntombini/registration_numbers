@@ -77,7 +77,7 @@ function addRegNum() {
 
     //clear error message
     let errorMessageNumPlate2 = document.querySelector('.error-numplate');
-    setTimeout(function(){ errorMessageNumPlate2.innerHTML = '' }, 3000);
+    setTimeout(function(){ errorMessageNumPlate2.innerHTML = '' }, 5000);
 }
 addBtn.addEventListener('click', addRegNum);
 
