@@ -60,38 +60,7 @@ select option {
 option:hover {
   background-color: lightslategrey;
 }
-/*
-.dropDown {
-  position: relative;
-  display: inline-block;
-}
 
-.dropDown a:hover {
-  background-color: grey;
+.error-numplate {
+  color: red;
 }
-
-.dropDownBtn:hover, .dropDownBtn:focus {
-  background-color: rgb(75, 243, 243);
-}
-
-
-.dropDownContent {
-  display: none;
-  position: absolute;
-  background-color: rgb(190, 212, 235);
-  min-width: 10rem;
-  overflow: auto;
-  box-shadow: 0 0.5rem 0.5rem 0;
-  z-index: 1;
-}
-
-.dropDownContent a {
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
-  text-decoration: none;
-  display: block;
-}
-
-.show {
-  display: block;
-}
-*/
