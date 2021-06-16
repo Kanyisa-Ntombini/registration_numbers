@@ -1,34 +1,33 @@
-/* === PAGE REFRESHES: DYNAMICALLY ADDING THE NUMBERPLATES IN LOCAL STORAGE
- === */
+//PAGE REFRESHES
 let getStorageList = [];
-//A storage list(full or empty) is retrieved or a new one is created
-if (JSON.parse(localStorage.getItem('keyList') === null)) {
+let getChosenTown = '';
+
+if (JSON.parse(localStorage.getItem('keyList')) === null) {
     localStorage.setItem('keyList', JSON.stringify([]));
-    //console.log(localStorage);
 } else {
     getStorageList = JSON.parse(localStorage.getItem('keyList'));
-    //console.log(getStorageList);   
-    
-    if (getStorageList.length > 0) {
+    if (localStorage.getItem('keyTown') != null) {
+        getChosenTown = localStorage.getItem('keyTown');
         for (let i=0; i<getStorageList.length; i++) {
-            let listItem1 = getStorageList[i];
-            document.body.onload = createElement();
-
-            function createElement() {
-                const newDiv = document.createElement('div');
-                const existingDiv = document.querySelector('.randomDiv');
-
-                //Storing the parent node in a variable
-                let parentDiv = existingDiv.parentNode;
-                const enterRegNum = document.createTextNode(listItem1);
-                newDiv.appendChild(enterRegNum);
-                parentDiv.insertBefore(newDiv, existingDiv);
-                newDiv.classList.add('num-plate');
+            let listItem = getStorageList[i];
+    
+            if (listItem.startsWith(getChosenTown)) {
+                document.body.onload = createElement();
+                function createElement() {
+                    const newDiv = document.createElement('div');
+                    const existingDiv = document.querySelector('.randomDiv');
+    
+                    //Storing the parent node in a variable
+                    let parentDiv = existingDiv.parentNode;
+                    const enterRegNum = document.createTextNode(listItem);
+                    newDiv.appendChild(enterRegNum);
+                    parentDiv.insertBefore(newDiv, existingDiv);
+                    newDiv.classList.add('num-plate');
+                }
             }
         }
     }
 }
-
 
 /* === ADD BUTTON === */
 const addBtn = document.querySelector('.addBtn');
@@ -94,27 +93,66 @@ function clickDropDown() {
     //get list from localStorage
     let updatedListStorage = JSON.parse(localStorage.getItem('keyList'));
     
+    //CHOOSE TOWN
     let chosenTown = document.getElementById('accessingDropDown').value;
     localStorage.setItem('keyTown', chosenTown);
     
-    //DYNAMICALLY ADDING THE NUMBERPLATES
-    for (let i=0; i<updatedListStorage.length; i++) {
-        let listItem = updatedListStorage[i];
-        let firstLetters = listItem.substr(0,2);
-
-        if (firstLetters === chosenTown) {
+    //PRINTING
+    if (chosenTown == 'ALL') {
+        for (let i=0; i<getStorageList.length; i++) {
+            let listItem1 = getStorageList[i];
             document.body.onload = createElement();
+
             function createElement() {
                 const newDiv = document.createElement('div');
                 const existingDiv = document.querySelector('.randomDiv');
 
                 //Storing the parent node in a variable
                 let parentDiv = existingDiv.parentNode;
-                const enterRegNum = document.createTextNode(listItem);
+                const enterRegNum = document.createTextNode(listItem1);
                 newDiv.appendChild(enterRegNum);
                 parentDiv.insertBefore(newDiv, existingDiv);
                 newDiv.classList.add('num-plate');
             }
         }
+    } else {
+        for (let i=0; i<updatedListStorage.length; i++) {
+            let listItem = updatedListStorage[i];
+    
+            if (listItem.startsWith(chosenTown)) {
+                document.body.onload = createElement();
+                function createElement() {
+                    const newDiv = document.createElement('div');
+                    const existingDiv = document.querySelector('.randomDiv');
+    
+                    //Storing the parent node in a variable
+                    let parentDiv = existingDiv.parentNode;
+                    const enterRegNum = document.createTextNode(listItem);
+                    newDiv.appendChild(enterRegNum);
+                    parentDiv.insertBefore(newDiv, existingDiv);
+                    newDiv.classList.add('num-plate');
+                }
+            }
+        }
+    }
+
+}
+
+/* === RESET BUTTON === */
+const resetBtn = document.querySelector('.reset');
+function resetEverything() {
+    //SHOWS SELECT ALL OPTION
+    let dropDownItems = document.querySelector('.dropDownContent');
+    dropDownItems[0].selected = true;
+
+    localStorage.clear();
+
+    //CLEAR NUMBER PLATES
+    let node = document.querySelectorAll('.num-plate');
+    for (let j=0; j<node.length; j++) {
+        if (node[j].parentNode) {
+            node[j].parentNode.removeChild(node[j]);
+        }; 
     }
 }
+resetBtn.addEventListener('click', resetEverything);
