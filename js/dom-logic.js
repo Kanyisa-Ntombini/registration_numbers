@@ -1,3 +1,5 @@
+let aRegNum = AddingRegNumbers();
+
 //PAGE REFRESHES
 let getStorageList = [];
 let getChosenTown = '';
@@ -12,18 +14,7 @@ if (JSON.parse(localStorage.getItem('keyList')) === null) {
             let listItem = getStorageList[i];
     
             if (listItem.startsWith(getChosenTown)) {
-                document.body.onload = createElement();
-                function createElement() {
-                    const newDiv = document.createElement('div');
-                    const existingDiv = document.querySelector('.randomDiv');
-    
-                    //Storing the parent node in a variable
-                    let parentDiv = existingDiv.parentNode;
-                    const enterRegNum = document.createTextNode(listItem);
-                    newDiv.appendChild(enterRegNum);
-                    parentDiv.insertBefore(newDiv, existingDiv);
-                    newDiv.classList.add('num-plate');
-                }
+                document.body.onload = aRegNum.createElement(listItem);
             }
         }
     }
@@ -31,7 +22,6 @@ if (JSON.parse(localStorage.getItem('keyList')) === null) {
 
 /* === ADD BUTTON === */
 const addBtn = document.querySelector('.addBtn');
-let aRegNum = AddingRegNumbers();
 
 function addRegNum() {
     //HTML ELEMENTS
@@ -46,18 +36,8 @@ function addRegNum() {
     if (numberplate <= 0) {
         errorMessageNumPlate.innerHTML = aRegNum.getNumberPlateError();
     } else {
-        document.body.onload = createElement();
-            function createElement() {
-                const newDiv = document.createElement('div');
-                const existingDiv = document.querySelector('.randomDiv');
-
-                //Storing the parent node in a variable
-                let parentDiv = existingDiv.parentNode;
-                const enterRegNum = document.createTextNode(aRegNum.getRegNum());
-                newDiv.appendChild(enterRegNum);
-                parentDiv.insertBefore(newDiv, existingDiv);
-                newDiv.classList.add('num-plate');
-            }
+        let gettingRegNum = aRegNum.getRegNum();
+        document.body.onload = aRegNum.createElement(gettingRegNum);
     }
 
     //Set the registration list from the localStorage into factory function
@@ -101,41 +81,17 @@ function clickDropDown() {
     if (chosenTown == 'ALL') {
         for (let i=0; i<getStorageList.length; i++) {
             let listItem1 = getStorageList[i];
-            document.body.onload = createElement();
-
-            function createElement() {
-                const newDiv = document.createElement('div');
-                const existingDiv = document.querySelector('.randomDiv');
-
-                //Storing the parent node in a variable
-                let parentDiv = existingDiv.parentNode;
-                const enterRegNum = document.createTextNode(listItem1);
-                newDiv.appendChild(enterRegNum);
-                parentDiv.insertBefore(newDiv, existingDiv);
-                newDiv.classList.add('num-plate');
-            }
+            document.body.onload = aRegNum.createElement(listItem1);
         }
     } else {
         for (let i=0; i<updatedListStorage.length; i++) {
             let listItem = updatedListStorage[i];
     
             if (listItem.startsWith(chosenTown)) {
-                document.body.onload = createElement();
-                function createElement() {
-                    const newDiv = document.createElement('div');
-                    const existingDiv = document.querySelector('.randomDiv');
-    
-                    //Storing the parent node in a variable
-                    let parentDiv = existingDiv.parentNode;
-                    const enterRegNum = document.createTextNode(listItem);
-                    newDiv.appendChild(enterRegNum);
-                    parentDiv.insertBefore(newDiv, existingDiv);
-                    newDiv.classList.add('num-plate');
-                }
+                document.body.onload = aRegNum.createElement(listItem);
             }
         }
     }
-
 }
 
 /* === RESET BUTTON === */
