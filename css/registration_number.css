@@ -6,7 +6,7 @@ body {
   padding: 0;
   left: 0;
   top: 0;
-  font-size: 100%;
+  font-size: 1.1rem;
   background-color: aliceblue;
 }
 
@@ -17,24 +17,10 @@ body {
     box-sizing: border-box;
   }
 
-.right {
-    float: right;
-    clear: both;
-}
-
-.container {
-    width: fit-content;
-    margin: 2rem auto 2rem auto;
-    padding: 2rem;
-}
-
-.num-plate {
-  border: black solid 0.15rem;
-  background-color: silver;
-  border-radius: 2rem;
-  width: 10rem;
-  text-align: center;
-  margin-bottom: 1rem;
+.container1 {
+  width: 45%;
+  margin: 2rem auto 2rem auto;
+  padding: 2rem;
 }
 
 .inputs {
@@ -43,24 +29,88 @@ body {
   /*height: 70%;*/
 }
 
-.margin-down {
+/* INPUT TEXT BOX */
+.typeIn {
+  margin-bottom: 0.5rem;
+  float: right;
+}
+
+.addBtnContainer {
+  clear: right;
+  float: right;
   margin-bottom: 1rem;
 }
 
+.addBtn {
+  background-color: red;
+  width: 5rem;
+}
+
+/* ERROR MESSAGE */
+.error-numplate {
+  color:crimson;
+  text-align: center;
+  clear: right;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
 /* DROP DOWN MENU*/
-select:hover {
-  background-color: rgb(98, 179, 250);
+.menuContainer {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.town-label {
+  margin-right: 0.5rem;
 }
 
 select option {
-  background-color: rgb(149, 190, 236);
-  box-shadow: 0 0.5rem 0.5rem 0;
+  background-color: magenta;
 }
 
 option:hover {
-  background-color: lightslategrey;
+  background-color: green;
 }
 
-.error-numplate {
-  color: red;
+/* RESET AND SHOW BUTTON */
+.dropDownBtn {
+  background-color: greenyellow;
+  width: 5rem;
+  margin-right: 0.5rem;
 }
+
+.reset {
+  background-color: rgb(204, 38, 204);
+  width: 5rem;
+  margin-left: 0.5rem;
+}
+
+.show-and-reset-btns {
+  text-align: center;
+}
+
+/* OUTPUT */
+.container2 {
+  text-align: center;
+  width: 45%;
+  margin: 2rem auto 2rem auto;
+}
+
+.num-plate {
+  border: black solid 0.15rem;
+  background-color: silver;
+  border-radius: 2rem;
+  width: 10rem;
+  text-align: center;
+  margin: auto 1rem 0.5rem 1rem;
+  float: left;
+}
+
+.randomDiv {
+  clear: left;
+}
+
+/*.outputs {
+  background-color: cyan;
+}*/

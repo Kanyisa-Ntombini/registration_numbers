@@ -7,38 +7,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <section class="container inputs">
-        <div class="">
-            <label for="" class="">Registration Number:</label>
-        </div>
-        <div class=""> 
-            <input type="text" value="" class="regNum">
-        </div>
-        <div class="margin-down">
-            <button class="addBtn">ADD</button>
-        </div>
+    <div class="container1 inputs">
+        <!-- TYPED IN STUFF -->
+        <section>
+            <div class="typeIn">
+                <label for="">Registration Number:</label> 
+                <input type="text" value="" class="regNum">
+            </div>
+            <div class="addBtnContainer">
+                <button class="addBtn">ADD</button>
+            </div>
+        </section>
 
-        <div class="error-numplate margin-down"></div>
+        <!-- ERROR MESSAGE -->
+        <section class="error-numplate">mmmm</section>
 
         <!-- DROP DOWN MENU FOR TOWNS-->
-        <label for="">Town: </label>
-        <div class="dropDown">
-            <select name="towns" id="accessingDropDown" class="dropDownContent">
-                <option value="selecttown">Select Town</option>
-                <option value="CY">Belville</option>
-                <option value="CA">Cape Town</option>
-                <option value="CJ">Paarl</option>
-                <option value="CL">Stellenbosch</option>
-                <option value="ALL">Show All</option>
-              </select>
-        </div>
-        <button onclick="clickDropDown()" class="dropDownBtn">SHOW</button>
-        <button class="reset">RESET</button>
-    </section>
+        <section class="menuContainer"> 
+            <label for="" class="town-label">Town:</label>
+            <span class="dropDown">
+                <select name="towns" id="accessingDropDown" class="dropDownContent">
+                    <option value="selecttown">Select Town</option>
+                    <option value="CY">Belville</option>
+                    <option value="CA">Cape Town</option>
+                    <option value="CJ">Paarl</option>
+                    <option value="CL">Stellenbosch</option>
+                    <option value="ALL">Show All</option>
+                </select>
+            </span>
+        </section>
+
+        <!-- SHOW AND RESET BUTTONS-->
+        <section class="show-and-reset-btns">
+            <button onclick="clickDropDown()" class="dropDownBtn">SHOW</button>
+            <button class="reset">RESET</button>
+        </section>
+    </div>
     
     <!-- GOING TO CREATE A NUMBER PLATE DYNAMICALLY -->
-    <section class="container">
-        <div class="randomDiv"></div>
+    <section class="container2">
+        <div class="outputs">
+            <div class="randomDiv"></div>
+        </div>
     </section>
 
     <!-- *** SCRIPTS ****-->
