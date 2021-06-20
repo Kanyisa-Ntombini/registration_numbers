@@ -20,8 +20,9 @@ if (JSON.parse(localStorage.getItem('keyList')) === null) {
     }
 }
 
+
 /* === ADD BUTTON === */
-const addBtn = document.querySelector('.addBtn');
+/*const addBtn = document.querySelector('.addBtn');
 
 function addRegNum() {
     //HTML ELEMENTS
@@ -61,9 +62,9 @@ function addRegNum() {
 addBtn.addEventListener('click', addRegNum);
 
 /* === DROP DOWN BUTTON === */
-function clickDropDown() {
+//function clickDropDown() {
     //CLEAR NUMBER PLATES
-    let node = document.querySelectorAll('.num-plate');
+    /*let node = document.querySelectorAll('.num-plate');
     for (let j=0; j<node.length; j++) {
         if (node[j].parentNode) {
             node[j].parentNode.removeChild(node[j]);
@@ -95,7 +96,7 @@ function clickDropDown() {
 }
 
 /* === RESET BUTTON === */
-const resetBtn = document.querySelector('.reset');
+/*const resetBtn = document.querySelector('.reset');
 function resetEverything() {
     //SHOWS SELECT ALL OPTION
     let dropDownItems = document.querySelector('.dropDownContent');
@@ -111,4 +112,4 @@ function resetEverything() {
         }; 
     }
 }
-resetBtn.addEventListener('click', resetEverything);
+resetBtn.addEventListener('click', resetEverything);*/
