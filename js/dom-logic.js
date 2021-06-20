@@ -2,15 +2,11 @@ let aRegNum = AddingRegNumbers();
 
 //PAGE REFRESHES
 aRegNum.checkStorageList();
-console.log(aRegNum.getUpdatedRegList());
 if (aRegNum.checkKeyTown()) {
-    console.log('works');
-    //aRegNum.printRefreshList();
-} else {
-    console.log('NOT');
+    aRegNum.refreshPrint();
 }
 
-/* === ADD BUTTON === */
+/* === ADD BUTTON === */ 
 const addBtn = document.querySelector('.addBtn');
 function addRegNum() {
     //HTML ELEMENTS
@@ -24,14 +20,17 @@ function addRegNum() {
     aRegNum.addToList();
 
     //Print number plate
-    /*if (regNum <= 0) {
+    if (regNum <= 0) {
         errorMessageNumPlate.innerHTML = aRegNum.getNumberPlateError();
-    } else {
+    } else if (aRegNum.checkDuplicate()) {
+        errorMessageNumPlate.innerHTML = aRegNum.getDuplicateError();
+    } 
+    
+    if (regNum>0 && !aRegNum.checkDuplicate()) {
         let gettingRegNum = aRegNum.getRegNum();
-        document.body.onload = aRegNum.printRefreshList();
-    }*/
+        document.body.onload = aRegNum.createElement(gettingRegNum);
+    }
 
-    /*
     //Add number plate to list in local storage
     let theUpdateStorageList = aRegNum.getUpdatedRegList();
     localStorage.keyList = JSON.stringify(theUpdateStorageList);
@@ -42,14 +41,14 @@ function addRegNum() {
 
     //clear error message
     let errorMessageNumPlate2 = document.querySelector('.error-numplate');
-    setTimeout(function(){ errorMessageNumPlate2.innerHTML = '' }, 5000);*/
+    setTimeout(function(){ errorMessageNumPlate2.innerHTML = '' }, 5000);
 }
-//addBtn.addEventListener('click', addRegNum);
+addBtn.addEventListener('click', addRegNum);
 
 /* === DROP DOWN BUTTON === */
-//function clickDropDown() {
+function clickDropDown() {
     //CLEAR NUMBER PLATES
-    /*let node = document.querySelectorAll('.num-plate');
+    let node = document.querySelectorAll('.num-plate');
     for (let j=0; j<node.length; j++) {
         if (node[j].parentNode) {
             node[j].parentNode.removeChild(node[j]);
@@ -65,8 +64,8 @@ function addRegNum() {
     
     //PRINTING
     if (chosenTown == 'ALL') {
-        for (let i=0; i<getStorageList.length; i++) {
-            let listItem1 = getStorageList[i];
+        for (let i=0; i<updatedListStorage.length; i++) {
+            let listItem1 = updatedListStorage[i];
             document.body.onload = aRegNum.createElement(listItem1);
         }
     } else {
@@ -81,7 +80,7 @@ function addRegNum() {
 }
 
 /* === RESET BUTTON === */
-/*const resetBtn = document.querySelector('.reset');
+const resetBtn = document.querySelector('.reset');
 function resetEverything() {
     //SHOWS SELECT ALL OPTION
     let dropDownItems = document.querySelector('.dropDownContent');
@@ -97,4 +96,4 @@ function resetEverything() {
         }; 
     }
 }
-resetBtn.addEventListener('click', resetEverything);*/
+resetBtn.addEventListener('click', resetEverything);

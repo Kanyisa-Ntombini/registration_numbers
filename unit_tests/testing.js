@@ -61,15 +61,14 @@ describe('Greetings function: Checking when a registration number is entered' ,
             
             assert.deepEqual('Please enter the registration number', testing.getNumberPlateError());
         });
-        
-        //should check if a number is entered
 
-        //should check if a language was selected
-        
-
-        //it ('should check if a greeting is made', 
-    
-        //Test for counter
-        
+        it('should check that no duplicates can be entered' , function(){
+            let testing = AddingRegNumbers();
+            testing.checkStorageList();
+            testing.checkKeyTown();
+            testing.setRegNum('CY 2222')
+            
+            assert.deepEqual(true, testing.checkDuplicate());
+        });
     }
 );

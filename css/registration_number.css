@@ -52,7 +52,8 @@ body {
   text-align: center;
   clear: right;
   margin-bottom: 1rem;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 0.8rem;
 }
 
 /* DROP DOWN MENU*/

@@ -1,6 +1,6 @@
 function AddingRegNumbers() {
     let numberplateError = '';
-    let theStorageList;
+    let theStorageList = [];
     let theRegNum = '';
     let getStorageKey = localStorage.getItem('keyList');
     let getTownKey = '';
@@ -31,10 +31,10 @@ function AddingRegNumbers() {
         newDiv.classList.add('num-plate');
     }
 
-    function printRefreshList() {
-        for (let i=0; i<theStorageList; i++) {
+    function refreshPrint() {
+        for (let i=0; i<theStorageList.length; i++) {
             let listItem = theStorageList[i];
-
+            
             if (listItem.startsWith(getTownKey)) {
                 document.body.onload = aRegNum.createElement(listItem);
             }
@@ -50,6 +50,16 @@ function AddingRegNumbers() {
         return theRegNum;
     }
 
+    function checkDuplicate() {
+        return theStorageList.includes(theRegNum);
+    }
+
+    function getDuplicateError() {
+        if (checkDuplicate) {
+            return 'Please do not add the same registration number more than once';
+        }
+    }
+
     function addToList() {
         if (theRegNum.length > 0) {
             theStorageList.push(theRegNum);
@@ -58,23 +68,25 @@ function AddingRegNumbers() {
         }
     }
 
-    function getUpdatedRegList() {
-        return theStorageList;
-    }
-
     function getNumberPlateError() {
         return numberplateError;
+    }
+
+    function getUpdatedRegList() {
+        return theStorageList;
     }
 
     return {
         checkStorageList,
         checkKeyTown,
-        printRefreshList,
         setRegNum,
+        checkDuplicate,
+        getDuplicateError,
         addToList,
         getUpdatedRegList,
         getNumberPlateError,
         getRegNum,
-        createElement
+        createElement,
+        refreshPrint
     }
 }
