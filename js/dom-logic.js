@@ -1,52 +1,34 @@
 let aRegNum = AddingRegNumbers();
 
 //PAGE REFRESHES
-let getStorageList = [];
-let getChosenTown = '';
-
-if (JSON.parse(localStorage.getItem('keyList')) === null) {
-    localStorage.setItem('keyList', JSON.stringify([]));
-} else {
-    getStorageList = JSON.parse(localStorage.getItem('keyList'));
-    if (localStorage.getItem('keyTown') != null) {
-        getChosenTown = localStorage.getItem('keyTown');
-        for (let i=0; i<getStorageList.length; i++) {
-            let listItem = getStorageList[i];
-    
-            if (listItem.startsWith(getChosenTown)) {
-                document.body.onload = aRegNum.createElement(listItem);
-            }
-        }
-    }
+aRegNum.checkStorageList();
+if (aRegNum.checkKeyTown()) {
+    aRegNum.printRefreshList();
 }
 
-
 /* === ADD BUTTON === */
-/*const addBtn = document.querySelector('.addBtn');
-
+const addBtn = document.querySelector('.addBtn');
 function addRegNum() {
     //HTML ELEMENTS
-    let regNum = document.querySelector('.regNum');
-    let numberplate = regNum.value;
+    let regNum = document.querySelector('.regNum').value;
     let errorMessageNumPlate = document.querySelector('.error-numplate');
 
     //Get Number plate
-    aRegNum.setRegNum(numberplate);
-
-    //Print number plate
-    if (numberplate <= 0) {
-        errorMessageNumPlate.innerHTML = aRegNum.getNumberPlateError();
-    } else {
-        let gettingRegNum = aRegNum.getRegNum();
-        document.body.onload = aRegNum.createElement(gettingRegNum);
-    }
-
-    //Set the registration list from the localStorage into factory function
-    aRegNum.setRegList(getStorageList);
+    aRegNum.setRegNum(regNum);
 
     //Add entered registration number to the list
     aRegNum.addToList();
+
+    //Print number plate
+    /*if (regNum <= 0) {
+        errorMessageNumPlate.innerHTML = aRegNum.getNumberPlateError();
+    } else {
+        let gettingRegNum = aRegNum.getRegNum();
+        document.body.onload = aRegNum.printRefreshList();
+    }*/
+
     
+    /*
     //Add number plate to list in local storage
     let theUpdateStorageList = aRegNum.getUpdatedRegList();
     localStorage.keyList = JSON.stringify(theUpdateStorageList);
@@ -57,9 +39,9 @@ function addRegNum() {
 
     //clear error message
     let errorMessageNumPlate2 = document.querySelector('.error-numplate');
-    setTimeout(function(){ errorMessageNumPlate2.innerHTML = '' }, 5000);
+    setTimeout(function(){ errorMessageNumPlate2.innerHTML = '' }, 5000);*/
 }
-addBtn.addEventListener('click', addRegNum);
+//addBtn.addEventListener('click', addRegNum);
 
 /* === DROP DOWN BUTTON === */
 //function clickDropDown() {

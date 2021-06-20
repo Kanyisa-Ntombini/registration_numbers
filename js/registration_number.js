@@ -1,34 +1,22 @@
 function AddingRegNumbers() {
     let numberplateError = '';
-    let theStorageList = [];
+    let theStorageList;
     let theRegNum = '';
-    
-    function setRegNum(num) {
-        theRegNum = num;
-    }
+    let getStorageKey = JSON.parse(localStorage.getItem('keyList'));
+    let getTownKey = '';
 
-    function setRegList (storageList) {
-        theStorageList = storageList;
-    }
-
-    function addToList() {
-        if (theRegNum.length > 0) {
-            theStorageList.push(theRegNum);
+    //REFRESHING PAGE
+    function checkStorageList()  {
+        if (getStorageKey === null) {
+            localStorage.setItem('keyList', JSON.stringify([]));
         } else {
-            numberplateError = 'Please enter the registration number';
+            theStorageList = JSON.stringify(localStorage.getItem('keyList'));
         }
     }
 
-    function getRegNum() {
-        return theRegNum;
-    }
-
-    function getUpdatedRegList() {
-        return theStorageList;
-    }
-
-    function getNumberPlateError() {
-        return numberplateError;
+    function checkKeyTown() {
+        getTownKey = localStorage.getItem('keyTown');
+        return getStorageKey !==null && getTownKey !== null;
     }
 
     function createElement(item) {
@@ -43,9 +31,48 @@ function AddingRegNumbers() {
         newDiv.classList.add('num-plate');
     }
 
+    function printRefreshList() {
+        for (let i=0; i<theStorageList; i++) {
+            let listItem = theStorageList[i];
+
+            if (listItem.startsWith(getTownKey)) {
+                document.body.onload = aRegNum.createElement(listItem);
+            }
+        }
+    }
+
+    //ADDING A NEW REGISTRATION NUMBER
+    function setRegNum(num) {
+        theRegNum = num.toUpperCase();
+    }
+
+    function getRegNum() {
+        return theRegNum;
+    }
+
+    function addToList() {
+        console.log(theStorageList);
+        if (theRegNum.length > 0) {
+            console.log('works');
+            theStorageList.push(theRegNum);
+        } else {
+            numberplateError = 'Please enter the registration number';
+        }
+    }
+
+    function getUpdatedRegList() {
+        return theStorageList;
+    }
+
+    function getNumberPlateError() {
+        return numberplateError;
+    }
+
     return {
+        checkStorageList,
+        checkKeyTown,
+        printRefreshList,
         setRegNum,
-        setRegList,
         addToList,
         getUpdatedRegList,
         getNumberPlateError,
