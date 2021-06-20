@@ -2,7 +2,7 @@ function AddingRegNumbers() {
     let numberplateError = '';
     let theStorageList;
     let theRegNum = '';
-    let getStorageKey = JSON.parse(localStorage.getItem('keyList'));
+    let getStorageKey = localStorage.getItem('keyList');
     let getTownKey = '';
 
     //REFRESHING PAGE
@@ -10,7 +10,7 @@ function AddingRegNumbers() {
         if (getStorageKey === null) {
             localStorage.setItem('keyList', JSON.stringify([]));
         } else {
-            theStorageList = JSON.stringify(localStorage.getItem('keyList'));
+            theStorageList = JSON.parse(localStorage.getItem('keyList'));
         }
     }
 
@@ -51,9 +51,7 @@ function AddingRegNumbers() {
     }
 
     function addToList() {
-        console.log(theStorageList);
         if (theRegNum.length > 0) {
-            console.log('works');
             theStorageList.push(theRegNum);
         } else {
             numberplateError = 'Please enter the registration number';

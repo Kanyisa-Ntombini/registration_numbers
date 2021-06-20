@@ -2,8 +2,12 @@ let aRegNum = AddingRegNumbers();
 
 //PAGE REFRESHES
 aRegNum.checkStorageList();
+console.log(aRegNum.getUpdatedRegList());
 if (aRegNum.checkKeyTown()) {
-    aRegNum.printRefreshList();
+    console.log('works');
+    //aRegNum.printRefreshList();
+} else {
+    console.log('NOT');
 }
 
 /* === ADD BUTTON === */
@@ -27,7 +31,6 @@ function addRegNum() {
         document.body.onload = aRegNum.printRefreshList();
     }*/
 
-    
     /*
     //Add number plate to list in local storage
     let theUpdateStorageList = aRegNum.getUpdatedRegList();

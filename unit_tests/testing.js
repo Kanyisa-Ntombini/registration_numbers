@@ -43,20 +43,24 @@ describe('Greetings function: Checking when a registration number is entered' ,
 
         it('should get the updated list', function() {
             let testing = AddingRegNumbers();
-            testing.setRegNum('CL 4444');
+            localStorage.setItem('keyList', JSON.stringify(['CY 2222', 'CJ 9999']));
+            testing.checkStorageList();
+            testing.checkKeyTown();
+            testing.setRegNum('CL 6666')
             testing.addToList();
-
-            assert.deepEqual(true, testing.getUpdatedRegList());
+            
+            assert.deepEqual(['CY 2222', 'CJ 9999', 'CL 6666'], testing.getUpdatedRegList());
         });
 
-
-
-        //should check registration number is received 
-        /*it('should check of registration number is received' , function(){
+        it('should check when no input is given' , function(){
             let testing = AddingRegNumbers();
-            testing.setRegNum('CA 2222');
-            assert.deepEqual('hey', testing.getRegNum());
-        });*/
+            testing.checkStorageList();
+            testing.checkKeyTown();
+            testing.setRegNum('')
+            testing.addToList();
+            
+            assert.deepEqual('Please enter the registration number', testing.getNumberPlateError());
+        });
         
         //should check if a number is entered
 
