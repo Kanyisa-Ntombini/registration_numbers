@@ -51,24 +51,5 @@ describe('Greetings function: Checking when a registration number is entered' ,
             
             assert.deepEqual(['CY 2222', 'CJ 9999', 'CL 6666'], testing.getUpdatedRegList());
         });
-
-        it('should check when no input is given' , function(){
-            let testing = AddingRegNumbers();
-            testing.checkStorageList();
-            testing.checkKeyTown();
-            testing.setRegNum('')
-            testing.addToList();
-            
-            assert.deepEqual('Please enter the registration number', testing.getNumberPlateError());
-        });
-
-        it('should check that no duplicates can be entered' , function(){
-            let testing = AddingRegNumbers();
-            testing.checkStorageList();
-            testing.checkKeyTown();
-            testing.setRegNum('CY 2222')
-            
-            assert.deepEqual(true, testing.checkDuplicate());
-        });
     }
 );

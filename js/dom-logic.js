@@ -17,18 +17,18 @@ function addRegNum() {
     aRegNum.setRegNum(regNum);
 
     //Add entered registration number to the list
-    aRegNum.addToList();
+    let gettingRegNum = aRegNum.getRegNum();
+    let storeList = JSON.parse(localStorage.getItem('keyList'));
 
     //Print number plate
-    if (regNum <= 0) {
-        errorMessageNumPlate.innerHTML = aRegNum.getNumberPlateError();
-    } else if (aRegNum.checkDuplicate()) {
-        errorMessageNumPlate.innerHTML = aRegNum.getDuplicateError();
-    } 
-    
-    if (regNum>0 && !aRegNum.checkDuplicate()) {
-        let gettingRegNum = aRegNum.getRegNum();
+    if (storeList.includes(gettingRegNum)) {
+        errorMessageNumPlate.innerHTML = 'Please do not enter the same registration number twice';
+    } else if (regNum.length <= 0){
+        errorMessageNumPlate.innerHTML = 'Please enter the registration number';
+    } else {
+        aRegNum.addToList();
         document.body.onload = aRegNum.createElement(gettingRegNum);
+        console.log('3');
     }
 
     //Add number plate to list in local storage
@@ -82,7 +82,7 @@ function clickDropDown() {
 /* === RESET BUTTON === */
 const resetBtn = document.querySelector('.reset');
 function resetEverything() {
-    //SHOWS SELECT ALL OPTION
+    //SHOWS SELECT OPTION
     let dropDownItems = document.querySelector('.dropDownContent');
     dropDownItems[0].selected = true;
 

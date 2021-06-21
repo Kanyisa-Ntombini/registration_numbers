@@ -1,5 +1,4 @@
 function AddingRegNumbers() {
-    let numberplateError = '';
     let theStorageList = [];
     let theRegNum = '';
     let getStorageKey = localStorage.getItem('keyList');
@@ -32,11 +31,18 @@ function AddingRegNumbers() {
     }
 
     function refreshPrint() {
-        for (let i=0; i<theStorageList.length; i++) {
-            let listItem = theStorageList[i];
-            
-            if (listItem.startsWith(getTownKey)) {
-                document.body.onload = aRegNum.createElement(listItem);
+        if (getTownKey === 'ALL') {
+            for (let i=0; i<theStorageList.length; i++) {
+                let listItem1 = theStorageList[i];
+                document.body.onload = aRegNum.createElement(listItem1);
+            }
+        } else {
+            for (let i=0; i<theStorageList.length; i++) {
+                let listItem = theStorageList[i];
+                
+                if (listItem.startsWith(getTownKey)) {
+                    document.body.onload = aRegNum.createElement(listItem);
+                }
             }
         }
     }
@@ -50,26 +56,10 @@ function AddingRegNumbers() {
         return theRegNum;
     }
 
-    function checkDuplicate() {
-        return theStorageList.includes(theRegNum);
-    }
-
-    function getDuplicateError() {
-        if (checkDuplicate) {
-            return 'Please do not add the same registration number more than once';
-        }
-    }
-
     function addToList() {
         if (theRegNum.length > 0) {
             theStorageList.push(theRegNum);
-        } else {
-            numberplateError = 'Please enter the registration number';
         }
-    }
-
-    function getNumberPlateError() {
-        return numberplateError;
     }
 
     function getUpdatedRegList() {
@@ -80,11 +70,8 @@ function AddingRegNumbers() {
         checkStorageList,
         checkKeyTown,
         setRegNum,
-        checkDuplicate,
-        getDuplicateError,
         addToList,
         getUpdatedRegList,
-        getNumberPlateError,
         getRegNum,
         createElement,
         refreshPrint
