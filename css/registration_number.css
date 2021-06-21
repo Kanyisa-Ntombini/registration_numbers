@@ -42,7 +42,7 @@ body {
 }
 
 .addBtn {
-  background-color: red;
+  background-color: rgb(79, 243, 150);
   width: 5rem;
 }
 
@@ -66,9 +66,9 @@ body {
   margin-right: 0.5rem;
 }
 
-select option {
+/*select option {
   background-color: magenta;
-}
+}*/
 
 option:hover {
   background-color: green;
@@ -76,13 +76,13 @@ option:hover {
 
 /* RESET AND SHOW BUTTON */
 .dropDownBtn {
-  background-color: greenyellow;
+  background-color: cornflowerblue;
   width: 5rem;
   margin-right: 0.5rem;
 }
 
 .reset {
-  background-color: rgb(204, 38, 204);
+  background-color: cornflowerblue;
   width: 5rem;
   margin-left: 0.5rem;
 }
