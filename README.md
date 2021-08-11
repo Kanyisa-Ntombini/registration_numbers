@@ -1,6 +1,6 @@
 # Registration Numbers!
 Flow chart for code: https://miro.com/app/board/o9J_lA_58bI=/
-Sprint planning: https://miro.com/app/board/o9J_l-hcyYI=/
+Planning: https://miro.com/app/board/o9J_l-hcyYI=/
 
 ## What is this webpage about?
 * I am creating a webpage that takes in a registration number from an input field. When the add button is pressed the number goes to a list
